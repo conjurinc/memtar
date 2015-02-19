@@ -10,4 +10,11 @@ describe MemTar do
       has_file 'some-file', content: 'foo', mode: 0600, uname: 'nobody'
     end
   end
+
+  describe '#add_symlink' do
+    it 'creates a symlink in the archive' do
+      subject.add_symlink 'password-file', '/etc/passwd'
+      has_symlink 'password-file'
+    end
+  end
 end

@@ -15,6 +15,11 @@ class MemTar
     @io.write "\0" * (512 - size % 512)
   end
 
+  def add_symlink path, target
+    fail ArgumentError, "handling of paths over 100 bytes long not implemented" if path.size > 100
+    @io.write header typeflag: '2', size: 0, mode: 0777, name: path, linkname: target
+  end
+
   def to_s
     @io.string + "\0" * 1024
   end

@@ -34,4 +34,16 @@ module SpecHelpers
 
     file
   end
+
+  def has_symlink path
+    file = seek path
+
+    expect(file).to be
+    expect(file.typeflag).to eq '2'
+
+    # linkname reading is broken in minitar
+    # expect(file.linkname).to eq target
+
+    file
+  end
 end
