@@ -8,7 +8,9 @@ class MemTar
   end
 
   def add_file path, content, opts = {}
+    return add_existing_file path, content if content.is_a?(File) && opts.empty?
     fail ArgumentError, "handling of paths over 100 bytes long not implemented" if path.size > 100
+
     size = content.size
     @io.write header opts.merge size: size, name: path
     @io.write content
@@ -18,6 +20,21 @@ class MemTar
   def add_symlink path, target
     fail ArgumentError, "handling of paths over 100 bytes long not implemented" if path.size > 100
     @io.write header typeflag: '2', size: 0, mode: 0777, name: path, linkname: target
+  end
+
+  def add_existing_file path, file
+    add_file path, file.read, MemTar.opts_of_stat(file.stat)
+  end
+
+  def self.opts_of_stat stat
+    uid, gid = [stat.uid, stat.gid]
+    {
+      mode: stat.mode & 0777,
+      uid: uid, gid: gid,
+      uname: Etc.getpwuid(uid).name,
+      gname: Etc.getgrgid(gid).name,
+      mtime: stat.mtime
+    }
   end
 
   def to_s
