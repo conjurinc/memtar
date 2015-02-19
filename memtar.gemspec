@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Rafał Rzepecki"]
   spec.email         = ["rafal@conjur.net"]
   spec.summary       = %q{In-memory tar archive creation}
-  spec.homepage      = "https://github.com/dividedmind/memtar"
+  spec.homepage      = "https://github.com/conjurinc/memtar"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
