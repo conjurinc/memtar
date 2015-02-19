@@ -1,3 +1,4 @@
-module MemTar
+#
+class MemTar
   VERSION = "0.0.1"
 end

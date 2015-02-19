@@ -25,7 +25,7 @@ Or install it yourself as:
 require 'memtar'
 
 archive = MemTar.new
-archive.default_uname = "nobody"
+archive.default[:uname] = "nobody"
 
 archive.add_file "foo", "content", mode: 0640
 archive.add_file "bar/baz", "hi!"
