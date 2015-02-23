@@ -23,7 +23,12 @@ class MemTar
   end
 
   def add_existing_file path, file
-    add_file path, file.read, MemTar.opts_of_stat(file.stat)
+    stat = file.lstat
+    if stat.symlink?
+      add_symlink path, File.readlink(file.path)
+    else
+      add_file path, file.read, MemTar.opts_of_stat(stat)
+    end
   end
 
   def self.opts_of_stat stat

@@ -23,6 +23,19 @@ describe MemTar do
       has_file 'xyzzy', content: 'bar', mode: 0750, uname: Etc.getlogin
       file.unlink
     end
+
+    it 'handles symlinks as File arguments' do
+      file = Tempfile.new 'foo'
+      path = file.path
+      file.close
+      file.unlink
+
+      FileUtils.ln_s '/etc/passwd', path
+
+      subject.add_file 'xyzzy', File.new(path)
+      has_symlink 'xyzzy'
+      File.unlink path
+    end
   end
 
   describe '#add_symlink' do
