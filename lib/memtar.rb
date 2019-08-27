@@ -49,7 +49,7 @@ class MemTar
   end
 
   def header opts
-    Archive::Tar::PosixHeader.new(default.merge opts).to_s
+    Archive::Tar::Minitar::PosixHeader.new(default.merge(opts)).to_s
   end
 
   def default
