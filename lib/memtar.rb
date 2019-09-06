@@ -13,7 +13,7 @@ class MemTar
     return add_existing_file path, content if content.is_a?(File) && opts.empty?
     fail ArgumentError, "handling of paths over 100 bytes long not implemented" if path.size > 100
 
-    size = content.size
+    size = content.bytesize
     @io.write header opts.merge size: size, name: path
     @io.write content
     @io.write "\0" * (512 - size % 512)

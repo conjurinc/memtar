@@ -13,6 +13,11 @@ describe MemTar do
       has_file 'some-file', content: 'foo', mode: 0600, uname: 'nobody'
     end
 
+    it 'correctly stores UTF-8 encoded strings' do
+      subject.add_file 'utftest', 'na starość żółw wydziela wstrętną woń'
+      has_file 'utftest', content: 'na starość żółw wydziela wstrętną woń'.b
+    end
+
     it 'handles File arguments' do
       file = Tempfile.new 'foo'
       file.chmod 0750
