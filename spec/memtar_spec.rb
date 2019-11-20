@@ -25,7 +25,7 @@ describe MemTar do
       file.close
 
       subject.add_file 'xyzzy', File.new(file.path)
-      has_file 'xyzzy', content: 'bar', mode: 0750, uname: Etc.getlogin
+      has_file 'xyzzy', content: 'bar', mode: 0750, uname: Etc.getpwuid.name
       file.unlink
     end
 
