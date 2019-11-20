@@ -16,7 +16,7 @@ class MemTar
     size = content.bytesize
     @io.write header opts.merge size: size, name: path
     @io.write content
-    @io.write "\0" * (512 - size % 512)
+    @io.write "\0" * ((512 - size % 512) % 512)
   end
 
   def add_symlink path, target

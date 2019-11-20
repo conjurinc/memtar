@@ -29,6 +29,13 @@ describe MemTar do
       file.unlink
     end
 
+    it 'handles content that is a factor of 512 bytes' do
+      subject.add_file 'test_file', 'a' * 512
+      subject.add_file 'another_test_file', 'some content'
+
+      has_file 'another_test_file', content: 'some content'
+    end
+
     it 'handles symlinks as File arguments' do
       file = Tempfile.new 'foo'
       path = file.path
