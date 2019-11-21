@@ -6,8 +6,8 @@ require 'memtar/version'
 Gem::Specification.new do |spec|
   spec.name          = "memtar"
   spec.version       = MemTar::VERSION
-  spec.authors       = ["Rafał Rzepecki"]
-  spec.email         = ["rafal@conjur.net"]
+  spec.authors       = ["CyberArk", "Rafał Rzepecki", "Micah Lee"]
+  spec.email         = ["conj_maintainers@cyberark.com"]
   spec.summary       = %q{In-memory tar archive creation}
   spec.homepage      = "https://github.com/conjurinc/memtar"
   spec.license       = "MIT"
