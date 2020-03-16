@@ -37,8 +37,6 @@ File.write "test.tar", archive.to_s
 
 ## Contributing
 
-1. Fork it ( https://github.com/conjurinc/memtar/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+We welcome contributions of all kinds to this repository. For instructions on
+how to get started and descriptions of our development workflows, please see our
+[contributing guide](CONTRIBUTING.md).
