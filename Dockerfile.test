@@ -1,5 +1,7 @@
 FROM ruby:2.5
 
+ENV BUNDLER_VERSION 2.2.18
+
 RUN mkdir /src
 WORKDIR /src
 
@@ -8,7 +10,7 @@ COPY Gemfile /src
 COPY Gemfile.lock /src
 COPY lib/memtar/version.rb /src/lib/memtar/
 
-RUN bundle install
+RUN gem install bundler:$BUNDLER_VERSION && bundle install
 
 COPY . /src/
 
