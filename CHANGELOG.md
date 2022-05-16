@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Security
+
+- Updated Dockerfile.test base image to use Ruby 3.0.4
+
 ## [0.1.4] - 2020-03-04
 
 ### Changed
