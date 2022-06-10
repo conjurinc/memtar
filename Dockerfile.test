@@ -1,6 +1,15 @@
-FROM ruby:3.0.4
+FROM ruby:3-slim
 
 ENV BUNDLER_VERSION 2.2.18
+
+
+RUN apt-get update && \
+    # Pull latest OS package updates to reduce risk of vulnerable
+    # packages.
+    apt-get dist-upgrade -y && \
+    # git is required to install some of the ruby gem dependencies
+    apt-get install -y git && \
+    apt-get clean
 
 RUN mkdir /src
 WORKDIR /src
