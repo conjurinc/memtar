@@ -19,8 +19,8 @@ pipeline {
 
     // Only publish to RubyGems if branch is 'master'
     // AND someone confirms this stage within 5 minutes
-    stage('Publish to RubyGems?') {
 
+    stage('Publish to RubyGems') {
       when {
         allOf {
           branch 'master'
@@ -45,17 +45,25 @@ pipeline {
         }
       }
       steps {
+        script {
         // Clean up first
-        sh 'docker run -i --rm -v $PWD:/src -w /src alpine/git clean -fxd'
+        
+        sh 'docker run -i --rm -v $PWD:/src -w /src --entrypoint /bin/sh alpine/git \
+            -c "git config --global --add safe.directory /src && \
+            git clean -fxd" '
 
         sh './publish.sh'
 
         // Clean up again...
-        sh 'docker run -i --rm -v $PWD:/src -w /src alpine/git clean -fxd'
-        deleteDir()
-      }
-    }
-  }
+        sh 'docker run -i --rm -v $PWD:/src -w /src --entrypoint /bin/sh alpine/git \
+            -c "git config --global --add safe.directory /src && \
+            git clean -fxd" '
+
+        
+        } 
+      } 
+    } 
+  } 
 
   post {
     always {

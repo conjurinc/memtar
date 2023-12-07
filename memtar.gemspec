@@ -12,14 +12,16 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/conjurinc/memtar"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0")
+  spec.files         = `git ls-files`.split($\)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "minitar", "~> 0.8"
+  spec.add_dependency "minitar", "~> 0.9"
 
-  spec.add_development_dependency "bundler", "~> 2.2.18"
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.2"
+  spec.add_development_dependency "bundler", "~> 2.4"
+  spec.add_development_dependency "rake", "~> 13.1"
+  spec.add_development_dependency "rspec", "~> 3.12"
+  spec.add_development_dependency "spec", "~> 5.3"
+  
 end
