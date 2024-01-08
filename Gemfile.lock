@@ -31,7 +31,6 @@ DEPENDENCIES
   bundler (~> 1.7)
   memtar!
   rake (~> 13.0)
-  rspec (~> 3.2)
 
 BUNDLED WITH
    1.17.2

@@ -1,4 +1,15 @@
 #!/bin/bash -eu
 
-docker build -f Dockerfile.test -t memtar_test .
-docker run --rm -v "$(pwd):/src" memtar_test rake spec
+echo "==> Starting test.sh"
+
+echo "==> Removing Gemfile.lock"
+rm -f Gemfile.lock
+
+echo "==> Docker Run"
+docker run --rm \
+    --volume $PWD:/src \
+    --workdir /src cyberark/ubuntu-ruby-builder \
+    bash -c 'git config --global --add safe.directory /src && gem install spec && bundle install && bundle && bundle exec rspec' 
+
+echo "==> End of test.sh"
+
